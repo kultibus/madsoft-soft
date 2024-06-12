@@ -1,18 +1,18 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
 
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
 
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "[name].bundle.[fullhash].js",
-    publicPath: "/",
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].bundle.[fullhash].js',
+    publicPath: '/',
     clean: true,
   },
 
@@ -23,30 +23,30 @@ module.exports = {
 
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
 
     new MiniCssExtractPlugin({
-      filename: "[name].[fullhash].css",
+      filename: '[name].[fullhash].css',
     }),
 
     new CleanWebpackPlugin(),
 
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "./src/public"),
-          to: "",
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "./src/public"),
+    //       to: "",
+    //     },
+    //   ],
+    // }),
   ],
 
   resolve: {
-    extensions: [".js", ".ts", ".jsx", ".tsx"],
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
 
     alias: {
-      "@src": path.resolve(__dirname, "./src"),
+      '@src': path.resolve(__dirname, './src'),
     },
   },
 
@@ -57,30 +57,30 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: "[local]_[hash:base64:12]",
+                localIdentName: '[local]_[hash:base64:12]',
               },
             },
           },
-          "sass-loader",
+          'sass-loader',
         ],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         exclude: /node_modules/,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
       {
         test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ['babel-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         exclude: /node_modules/,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
@@ -92,8 +92,8 @@ module.exports = {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
+          name: 'vendors',
+          chunks: 'all',
         },
       },
     },
