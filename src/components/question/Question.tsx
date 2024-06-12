@@ -14,7 +14,9 @@ export const Question: FC<QuestionType> = (props) => {
 
   return (
     <Box>
-      <Heading>{currentQuestion + '' + question}</Heading>
+      <Heading>
+        {`${currentQuestion + 1}` + '. ' + decodeURIComponent(question)}
+      </Heading>
       <Button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
         Следующий вопрос
       </Button>

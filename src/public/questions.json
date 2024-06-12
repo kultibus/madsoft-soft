@@ -1,0 +1,86 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science &amp; Nature",
+    "question": "On which mission did the Space Shuttle Columbia break up upon re-entry?",
+    "correct_answer": "STS-107",
+    "incorrect_answers": ["STS-51-L", "STS-61-C", "STS-109"]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "The capital of the US State Ohio is the city of Chillicothe.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Entertainment: Video Games",
+    "question": "What was the world&#039;s first video game?",
+    "correct_answer": "Tennis for Two",
+    "incorrect_answers": ["Spacewar!", "Pong", "Space Travel"]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Art",
+    "question": "Pablo Picasso is one of the founding fathers of &quot;Cubism.&quot;",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "General Knowledge",
+    "question": "Which American-owned brewery led the country in sales by volume in 2015?",
+    "correct_answer": "D. G. Yuengling and Son, Inc",
+    "incorrect_answers": [
+      "Anheuser Busch",
+      "Boston Beer Company",
+      "Miller Coors"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geography",
+    "question": "Which of these is NOT a city in India?",
+    "correct_answer": "Islamabad",
+    "incorrect_answers": ["Hyderabad", "Ahmedabad", "Ghaziabad"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entertainment: Board Games",
+    "question": "How many spaces are there on a standard Monopoly board?",
+    "correct_answer": "40",
+    "incorrect_answers": ["28", "55", "36"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "History",
+    "question": "During the Roman Triumvirate of 42 BCE, what region of the Roman Republic was given to Lepidus?",
+    "correct_answer": "Hispania ",
+    "incorrect_answers": ["Italia", "Gallia", "Asia"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entertainment: Film",
+    "question": "What is the name of the foley artist who designed the famous sounds of Star Wars, including Chewbacca&#039;s roar and R2-D2&#039;s beeps and whistles?",
+    "correct_answer": "Ben Burtt",
+    "incorrect_answers": ["Ken Burns", "Ralph McQuarrie", "Miranda Keyes"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Celebrities",
+    "question": "What was James Coburn&#039;s last film role before his death?",
+    "correct_answer": "American Gun",
+    "incorrect_answers": ["Monsters Inc", "Texas Rangers", "Snow Dogs"]
+  }
+]
