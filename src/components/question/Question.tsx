@@ -1,10 +1,11 @@
-import { Box, Button, Heading } from '@chakra-ui/react';
+import React, { FC } from 'react';
+import { Box, Heading } from '@chakra-ui/react';
 import { Questions } from '@src/api/api';
 import { $quizStore, setCurrentQuestion } from '@src/pages/quiz/store';
 import { RESULT_ROUTE } from '@src/routes';
 import { useUnit } from 'effector-react';
-import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { AppBtn } from '../UI/AppBtn';
 
 interface QuestionProps {
   questions: Questions;
@@ -24,17 +25,17 @@ export const Question: FC<QuestionProps> = (props) => {
   };
 
   return (
-    <Box>
-      <Heading>
+    <Box display='flex' flexDir='column' gap={4} alignItems='start'>
+      <Heading size='lg'>
         {`${currentQuestion + 1}` + '. ' + questions[currentQuestion].question}
       </Heading>
 
       {!isLastQuestion ? (
-        <Button onClick={handleClick}>Следующий вопрос</Button>
+        <AppBtn onClick={handleClick}>Следующий вопрос</AppBtn>
       ) : (
-        <Button as={Link} to={RESULT_ROUTE}>
-          Закончить тестирование
-        </Button>
+        <AppBtn>
+          <Link to={RESULT_ROUTE}>Закончить тестирование</Link>
+        </AppBtn>
       )}
     </Box>
   );
