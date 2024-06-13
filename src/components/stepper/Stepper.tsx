@@ -27,9 +27,7 @@ export const Stepper: FC<StepperProps> = (props) => {
                   ? 'var(--chakra-colors-red-500)'
                   : 'var(--chakra-colors-gray-200)'
               }
-              //   flexBasis='10%'
               flexGrow={1}
-              //   borderRadius='4px'
             />
           );
         })}

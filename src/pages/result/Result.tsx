@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Center, Heading } from '@chakra-ui/react';
+import { Center, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { APP_MAIN_ROUTE } from '@src/routes';
 import { setCurrentQuestion } from '../quiz/store';
 import { Content, Header, Wrapper } from '@src/components';
@@ -17,9 +17,13 @@ export const Result: FC = () => {
 
       <Content>
         <Center h='100%'>
-          <AppBtn onClick={() => setCurrentQuestion(0)}>
-            <Link to={APP_MAIN_ROUTE}>Пройти ещё раз</Link>
-          </AppBtn>
+          <LinkBox>
+            <AppBtn onClick={() => setCurrentQuestion(0)}>
+              <LinkOverlay as={Link} to={APP_MAIN_ROUTE}>
+                Пройти ещё раз
+              </LinkOverlay>
+            </AppBtn>
+          </LinkBox>
         </Center>
       </Content>
     </Wrapper>

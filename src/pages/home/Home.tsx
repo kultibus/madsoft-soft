@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Center, Heading } from '@chakra-ui/react';
+import { Center, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { QUIZ_ROUTE } from '@src/routes';
 import { AppBtn } from '@src/components/UI/AppBtn';
 import { Content, Header, Wrapper } from '@src/components';
-// import { setisTimeOver } from '../quiz/store';
+import { setisTimeOver } from '../quiz/store';
 
 export const Home: FC = () => {
   return (
@@ -16,10 +16,13 @@ export const Home: FC = () => {
       </Header>
       <Content>
         <Center h='100%'>
-          {/* <AppBtn onClick={() => setisTimeOver(false)}> */}
-          <AppBtn>
-            <Link to={QUIZ_ROUTE}>Начать тестирование</Link>
-          </AppBtn>
+          <LinkBox>
+            <AppBtn onClick={() => setisTimeOver(false)}>
+              <LinkOverlay as={Link} to={QUIZ_ROUTE}>
+                Начать тестирование
+              </LinkOverlay>
+            </AppBtn>
+          </LinkBox>
         </Center>
       </Content>
     </Wrapper>

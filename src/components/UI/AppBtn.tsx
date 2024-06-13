@@ -9,7 +9,7 @@ export const AppBtn: FC<AppBtnProps> = (props) => {
   const { children, ...rest } = props;
 
   return (
-    <Button size='lg' colorScheme='blue' {...rest}>
+    <Button display={'flex'} size='lg' colorScheme='blue' {...rest}>
       {children}
     </Button>
   );

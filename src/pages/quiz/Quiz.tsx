@@ -1,26 +1,16 @@
+import React, { FC } from 'react';
 import { Center, Flex, Heading, Spinner } from '@chakra-ui/react';
 import { getQuestions } from '@src/api/api';
 import { Content, Header, Question, Stepper, Wrapper } from '@src/components';
 import { Timer } from '@src/components/timer';
 import { useQuery } from '@tanstack/react-query';
-// import { useUnit } from 'effector-react';
-import React, { FC } from 'react';
-// import { $quizStore, setisTimeOver } from './store';
-// import { useNavigate } from 'react-router-dom';
-// import { APP_MAIN_ROUTE, RESULT_ROUTE } from '@src/routes';
+import { useUnit } from 'effector-react';
+import { $quizStore } from './store';
+import { Navigate } from 'react-router-dom';
+import { RESULT_ROUTE } from '@src/routes';
 
 export const Quiz: FC = () => {
-  //   const { isTimeOver } = useUnit($quizStore);
-
-  //   const navigate = useNavigate();
-
-  //   useEffect(() => {
-  //     setisTimeOver(false);
-  //   }, []);
-
-  //   useEffect(() => {
-  //     if (isTimeOver) navigate(RESULT_ROUTE);
-  //   }, [isTimeOver]);
+  const { isTimeOver } = useUnit($quizStore);
 
   const { data: questions = [], isLoading: isQuestionsLoading } = useQuery({
     queryKey: ['random-questions'],
@@ -33,6 +23,8 @@ export const Quiz: FC = () => {
         <Spinner />
       </Center>
     );
+
+  if (isTimeOver) return <Navigate to={RESULT_ROUTE} />;
 
   return (
     <Wrapper>

@@ -7,4 +7,5 @@ module.exports = {
   printWidth: 80,
   trailingComma: 'all',
   proseWrap: 'never',
+  endOfLine: 'crlf',
 };

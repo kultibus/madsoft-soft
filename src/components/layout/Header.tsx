@@ -7,18 +7,7 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = (props) => {
   return (
-    <Box
-      as='header'
-      //   flexShrink={0}
-      //   fontSize={32}
-      //   lineHeight='32px'
-      //   fontWeight={600}
-      bg='var(--chakra-colors-blue-200)'
-      h='96px'
-      //   py={8}
-      px={4}
-      //   w='100%'
-    >
+    <Box as='header' bg='var(--chakra-colors-blue-200)' h='96px' px={4}>
       {props.children}
     </Box>
   );

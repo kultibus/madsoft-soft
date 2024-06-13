@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { Questions } from '@src/api/api';
-import { $quizStore, setCurrentQuestion } from '@src/pages/quiz/store';
+import {
+  $quizStore,
+  setCurrentQuestion,
+  setisTimeOver,
+} from '@src/pages/quiz/store';
 import { RESULT_ROUTE } from '@src/routes';
 import { useUnit } from 'effector-react';
 import { Link } from 'react-router-dom';
@@ -18,7 +22,7 @@ export const Question: FC<QuestionProps> = (props) => {
 
   const isLastQuestion = questions.length - currentQuestion === 1;
 
-  const handleClick = () => {
+  const handleNextClick = () => {
     if (isLastQuestion) return;
 
     setCurrentQuestion(currentQuestion + 1);
@@ -31,11 +35,15 @@ export const Question: FC<QuestionProps> = (props) => {
       </Heading>
 
       {!isLastQuestion ? (
-        <AppBtn onClick={handleClick}>Следующий вопрос</AppBtn>
+        <AppBtn onClick={handleNextClick}>Следующий вопрос</AppBtn>
       ) : (
-        <AppBtn>
-          <Link to={RESULT_ROUTE}>Закончить тестирование</Link>
-        </AppBtn>
+        <LinkBox>
+          <AppBtn onClick={() => setisTimeOver(true)}>
+            <LinkOverlay as={Link} to={RESULT_ROUTE}>
+              Закончить тестирование
+            </LinkOverlay>
+          </AppBtn>
+        </LinkBox>
       )}
     </Box>
   );
