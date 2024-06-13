@@ -2,13 +2,20 @@ import React, { FC, useId } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useUnit } from 'effector-react';
 import { $quizStore } from '@src/pages/quiz/store';
+import { Questions } from '@src/api/api';
 
-export const Stepper: FC = () => {
+interface StepperProps {
+  questions: Questions;
+}
+
+export const Stepper: FC<StepperProps> = (props) => {
+  const { questions } = props;
+
   const { currentQuestion } = useUnit($quizStore);
 
   return (
     <Box display='flex' w='100%' gap={4}>
-      {[...new Array(10)]
+      {[...new Array(questions.length)]
         .map((_, i) => i)
         .map((elem) => {
           return (

@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const base = axios.create({
-  baseURL: 'https://opentdb.com/api.php',
-});
+const URL = 'questions.json';
 
 interface MultipleQuestionType {
   type: 'multiple';
@@ -36,7 +34,4 @@ export type QuestionType = MultipleQuestionType | TrueFalseQuestionType;
 export type Questions = QuestionType[];
 
 export const getQuestions = () =>
-  base.get<{ results: Questions }>('?amount=10&encode=url3986').then((res) => {
-    return res.data.results;
-  });
-// .catch((e) => []);
+  axios.get<Questions>(URL).then((res) => res.data);

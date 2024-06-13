@@ -7468,6 +7468,7 @@ __metadata:
     typescript: ^5.4.5
     webpack: ^5.92.0
     webpack-cli: ^5.1.4
+    webpack-dev-middleware: ^7.2.1
     webpack-dev-server: ^5.0.4
   languageName: unknown
   linkType: soft
@@ -10219,7 +10220,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-dev-middleware@npm:^7.1.0":
+"webpack-dev-middleware@npm:^7.1.0, webpack-dev-middleware@npm:^7.2.1":
   version: 7.2.1
   resolution: "webpack-dev-middleware@npm:7.2.1"
   dependencies:

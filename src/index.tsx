@@ -8,10 +8,10 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
-import { QUIZ_ROUTE, APP_MAIN_ROUTE } from '@src/routes';
+import { QUIZ_ROUTE, APP_MAIN_ROUTE, RESULT_ROUTE } from '@src/routes';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-import { Home, Quiz } from './pages';
+import { Home, Quiz, Result } from './pages';
 
 import './index.scss';
 
@@ -25,6 +25,7 @@ const router = createBrowserRouter(
     <Route path={APP_MAIN_ROUTE} element={<Outlet />}>
       <Route index element={<Home />} />
       <Route path={QUIZ_ROUTE} element={<Quiz />} />
+      <Route path={RESULT_ROUTE} element={<Result />} />
     </Route>,
   ),
 );

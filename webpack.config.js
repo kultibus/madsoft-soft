@@ -19,6 +19,9 @@ module.exports = {
   devServer: {
     port: 3000,
     historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, 'src', 'public'),
+    },
   },
 
   plugins: [
@@ -35,8 +38,8 @@ module.exports = {
     // new CopyWebpackPlugin({
     //   patterns: [
     //     {
-    //       from: path.resolve(__dirname, "./src/public"),
-    //       to: "",
+    //       from: path.resolve(__dirname, './src/public'),
+    //       to: '',
     //     },
     //   ],
     // }),
