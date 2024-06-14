@@ -4,7 +4,7 @@ import { Questions } from '@src/api/api';
 import {
   $quizStore,
   setCurrentQuestion,
-  setisTimeOver,
+  setIsTimeOver,
 } from '@src/pages/quiz/store';
 import { RESULT_ROUTE } from '@src/routes';
 import { useUnit } from 'effector-react';
@@ -38,7 +38,7 @@ export const Question: FC<QuestionProps> = (props) => {
         <AppBtn onClick={handleNextClick}>Следующий вопрос</AppBtn>
       ) : (
         <LinkBox>
-          <AppBtn onClick={() => setisTimeOver(true)}>
+          <AppBtn onClick={() => setIsTimeOver(true)}>
             <LinkOverlay as={Link} to={RESULT_ROUTE}>
               Закончить тестирование
             </LinkOverlay>

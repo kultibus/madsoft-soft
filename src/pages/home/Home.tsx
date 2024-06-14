@@ -4,7 +4,7 @@ import { Center, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { QUIZ_ROUTE } from '@src/routes';
 import { AppBtn } from '@src/components/UI/AppBtn';
 import { Content, Header, Wrapper } from '@src/components';
-import { setisTimeOver } from '../quiz/store';
+import { setIsTimeOver } from '../quiz/store';
 
 export const Home: FC = () => {
   return (
@@ -17,7 +17,7 @@ export const Home: FC = () => {
       <Content>
         <Center h='100%'>
           <LinkBox>
-            <AppBtn onClick={() => setisTimeOver(false)}>
+            <AppBtn onClick={() => setIsTimeOver(false)}>
               <LinkOverlay as={Link} to={QUIZ_ROUTE}>
                 Начать тестирование
               </LinkOverlay>
