@@ -15,7 +15,10 @@ import { AppBtn } from '@src/components/UI/AppBtn';
 import { useUnit } from 'effector-react';
 
 export const Result: FC = () => {
-  const { finishTime } = useUnit($quizStore);
+  const { elapsedTime } = useUnit($quizStore);
+
+  const minutes = Math.floor((elapsedTime / 1000 / 60) % 60);
+  const seconds = Math.floor((elapsedTime / 1000) % 60);
 
   return (
     <Wrapper>
@@ -30,7 +33,10 @@ export const Result: FC = () => {
           <Flex direction={'column'} gap={2}>
             <Flex fontWeight={400} fontSize={'larger'} gap={2}>
               <Text>Время выполнения: </Text>
-              <Text>{finishTime}</Text>
+              <Text>
+                {minutes > 9 ? minutes : '0' + minutes}:
+                {seconds > 9 ? seconds : '0' + seconds}
+              </Text>
             </Flex>
             <LinkBox>
               <AppBtn onClick={() => setCurrentQuestion(0)}>

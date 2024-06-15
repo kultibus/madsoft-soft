@@ -1,47 +1,39 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Heading } from '@chakra-ui/react';
-import { setFinishTime, setIsTimeOver } from '@src/pages/quiz/store';
+import { setIsTimeOver } from '@src/pages/quiz/store';
 
-const minutesLimit = 10;
+const MINUTES_LIMIT = 10;
 
 export const Timer: FC = () => {
-  const [minutes, setMinutes] = useState<number>(minutesLimit - 1);
-  const [seconds, setSeconds] = useState<number>(60);
+  const [minutes, setMinutes] = useState<number>(MINUTES_LIMIT);
+  const [seconds, setSeconds] = useState<number>(0);
+
+  const getTime = (timeLimit: number) => {
+    const time = timeLimit - Date.now();
+
+    setMinutes(Math.floor((time / 1000 / 60) % 60));
+    setSeconds(Math.floor((time / 1000) % 60));
+
+    return Math.floor(time / 1000);
+  };
 
   useEffect(() => {
-    const timer = setTimeout(function startTimer() {
-      setSeconds((sec) => sec - 1);
-    }, 1000);
+    const timeLimit = Date.now() + MINUTES_LIMIT * 60000;
 
-    if (seconds === 0 && minutes === 0) {
-      setIsTimeOver(true);
-      clearTimeout(timer);
-      return;
-    }
+    const timer = setTimeout(function run() {
+      const timeEnd = getTime(timeLimit);
 
-    if (seconds === 0) {
-      setMinutes((min) => min - 1);
-      setSeconds(60);
-    }
+      const timer = setTimeout(run, 1000);
+
+      if (timeEnd === 0) {
+        setIsTimeOver(true);
+        clearTimeout(timer);
+      }
+    }, 0);
 
     return () => {
       setIsTimeOver(false);
       clearTimeout(timer);
-    };
-  }, [seconds, minutes]);
-
-  useEffect(() => {
-    const startTime = Date.now();
-
-    return () => {
-      const finishTime = new Date(Date.now() - startTime);
-
-      const minutes = finishTime.getMinutes();
-      const seconds = finishTime.getSeconds();
-      const strMin = minutes < 10 ? '0' + minutes : '' + minutes;
-      const strSec = seconds < 10 ? '0' + seconds : '' + seconds;
-
-      setFinishTime(strMin + ':' + strSec);
     };
   }, []);
 
@@ -50,12 +42,8 @@ export const Timer: FC = () => {
       color={minutes < 1 && 'var(--chakra-colors-red-500)'}
       fontWeight={400}
     >
-      {minutes === minutesLimit - 1 && seconds === 60
-        ? minutesLimit
-        : minutes < 10
-        ? '0' + minutes
-        : minutes}
-      :{seconds < 10 ? '0' + seconds : seconds > 59 ? '00' : seconds}
+      {minutes > 9 ? minutes : '0' + minutes}:
+      {seconds > 9 ? seconds : '0' + seconds}
     </Heading>
   );
 };

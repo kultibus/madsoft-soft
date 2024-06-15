@@ -1,16 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Center, Flex, Heading, Spinner } from '@chakra-ui/react';
 import { getQuestions } from '@src/api/api';
 import { Content, Header, Question, Stepper, Wrapper } from '@src/components';
 import { Timer } from '@src/components/timer';
 import { useQuery } from '@tanstack/react-query';
 import { useUnit } from 'effector-react';
-import { $quizStore } from './store';
+import { $quizStore, setElapsedTime } from './store';
 import { Navigate } from 'react-router-dom';
 import { RESULT_ROUTE } from '@src/routes';
 
 export const Quiz: FC = () => {
   const { isTimeOver } = useUnit($quizStore);
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    return () => {
+      setElapsedTime(Date.now() - startTime);
+    };
+  }, []);
 
   const { data: questions = [], isLoading: isQuestionsLoading } = useQuery({
     queryKey: ['random-questions'],
