@@ -20,16 +20,29 @@ interface TrueFalseQuestionType {
   incorrect_answers: ('True' | 'False')[];
 }
 
-// interface ShortQuestionType {
-//   type: 'boolean';
-//   difficulty: 'easy' | 'medium' | 'hard';
-//   category: string;
-//   question: string;
-//   correct_answer: 'True' | 'False';
-//   incorrect_answers: ('True' | 'False')[];
-// }
+interface ShortQuestionType {
+  type: 'short';
+  difficulty: 'easy' | 'medium' | 'hard';
+  category: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: null;
+}
 
-export type QuestionType = MultipleQuestionType | TrueFalseQuestionType;
+interface DetailedQuestionType {
+  type: 'detailed';
+  difficulty: 'easy' | 'medium' | 'hard';
+  category: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: null;
+}
+
+export type QuestionType =
+  | MultipleQuestionType
+  | TrueFalseQuestionType
+  | ShortQuestionType
+  | DetailedQuestionType;
 
 export type Questions = QuestionType[];
 

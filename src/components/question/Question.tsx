@@ -3,9 +3,11 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Input,
   Radio,
   RadioGroup,
   Stack,
+  Textarea,
 } from '@chakra-ui/react';
 import { Questions } from '@src/api/api';
 import {
@@ -30,6 +32,7 @@ export const Question: FC<QuestionProps> = (props) => {
   const { currentQuestion, results } = useUnit($quizStore);
   const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
   const [radioValue, setRadioValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -43,7 +46,7 @@ export const Question: FC<QuestionProps> = (props) => {
   }, [questions, currentQuestion]);
 
   const answers = useMemo(() => {
-    if (type === 'boolean') return null;
+    if (type !== 'multiple') return null;
 
     const answers =
       typeof correctAnswer === 'string'
@@ -83,6 +86,7 @@ export const Question: FC<QuestionProps> = (props) => {
         setResults([...results, [isRightCheckboxAnswer, question]]);
 
         break;
+
       case 'boolean':
         const isRightRadioAnswer =
           radioValue === correctAnswer.toLocaleLowerCase() ? true : false;
@@ -90,10 +94,16 @@ export const Question: FC<QuestionProps> = (props) => {
         setResults([...results, [isRightRadioAnswer, question]]);
 
         break;
+
+      default:
+        setResults([...results, [inputValue, question]]);
+
+        break;
     }
 
     setCheckboxValues([]);
     setRadioValue('');
+    setInputValue('');
 
     if (isLastQuestion) {
       setIsTimeOver(true);
@@ -153,6 +163,23 @@ export const Question: FC<QuestionProps> = (props) => {
               </Radio>
             </Stack>
           </RadioGroup>
+        )}
+
+        {type === 'short' && (
+          <Input
+            maxLength={30}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            size={'lg'}
+          />
+        )}
+        {type === 'detailed' && (
+          <Textarea
+            resize={'vertical'}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            size={'lg'}
+          />
         )}
       </FormControl>
 

@@ -51,7 +51,13 @@ export const Result: FC = () => {
             <List>
               {results.map((r, i) => (
                 <ListItem key={i}>
-                  {i + 1}: {r[0] ? 'Верно' : 'Неверно'}
+                  {/* {i + 1}: {r[0] ? 'Верно' : 'Неверно'} */}
+                  {i + 1}:{' '}
+                  {typeof r[0] !== 'boolean'
+                    ? r[0]
+                    : r[0]
+                    ? 'Верно'
+                    : 'Неверно'}
                 </ListItem>
               ))}
             </List>

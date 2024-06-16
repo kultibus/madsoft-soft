@@ -32,39 +32,23 @@
     "incorrect_answers": ["False"]
   },
   {
-    "type": "multiple",
-    "difficulty": "medium",
-    "category": "Science & Nature",
-    "question": "On which mission did the Space Shuttle Columbia break up upon re-entry?",
-    "correct_answer": "STS-107",
-    "incorrect_answers": ["STS-51-L", "STS-61-C", "STS-109"]
-  },
-  {
-    "type": "multiple",
-    "difficulty": "hard",
-    "category": "History",
-    "question": "During the Roman Triumvirate of 42 BCE, what region of the Roman Republic was given to Lepidus?",
-    "correct_answer": ["Hispania", "Francia"],
-    "incorrect_answers": ["Italia", "Gallia", "Asia"]
-  },
-  {
     "type": "boolean",
     "difficulty": "medium",
     "category": "Geography",
-    "question": "The capital of the US State Ohio is the city of Chillicothe.",
+    "question": "Выбор ответа 'да' или 'нет' (верный ответ - 'нет').",
     "correct_answer": "False",
     "incorrect_answers": ["True"]
   },
   {
     "type": "short",
     "difficulty": "medium",
-    "category": "Geography",
-    "question": "What's your favorite web browser?"
+    "category": "Science & Nature",
+    "question": "Короткий ответ."
   },
   {
     "type": "detailed",
     "difficulty": "medium",
-    "category": "Geography",
-    "question": "Describe  your frontend development experience over the past year."
+    "category": "Science & Nature",
+    "question": "Развёрнутый ответ."
   }
 ]
