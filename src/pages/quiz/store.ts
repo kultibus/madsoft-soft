@@ -1,9 +1,10 @@
-import { QuestionType } from '@src/api/api';
+// import { QuestionType } from '@src/api/api';
 import { createStore, createEvent } from 'effector';
 
 interface QuizStore {
   currentQuestion: number;
-  results: [boolean, QuestionType][];
+  //   results: [boolean, QuestionType][];
+  results: [boolean, string][];
   elapsedTime: number;
   isTimeOver: boolean;
 }
@@ -18,6 +19,7 @@ const $quizStore = createStore<QuizStore>({
 const setCurrentQuestion = createEvent<number>();
 const setIsTimeOver = createEvent<boolean>();
 const setElapsedTime = createEvent<number>();
+const setResults = createEvent<[boolean, string][]>();
 
 $quizStore.on(setCurrentQuestion, (state, currentQuestion) => ({
   ...state,
@@ -34,4 +36,19 @@ $quizStore.on(setElapsedTime, (state, elapsedTime) => ({
   elapsedTime,
 }));
 
-export { $quizStore, setCurrentQuestion, setIsTimeOver, setElapsedTime };
+$quizStore.on(setResults, (state, results) => ({
+  ...state,
+  results,
+}));
+// $quizStore.on(setResults, (state, result) => ({
+//   ...state,
+//   results: [...state.results, result],
+// }));
+
+export {
+  $quizStore,
+  setCurrentQuestion,
+  setIsTimeOver,
+  setElapsedTime,
+  setResults,
+};

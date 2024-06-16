@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { setIsTimeOver } from '@src/pages/quiz/store';
 
 const MINUTES_LIMIT = 10;
@@ -38,12 +38,13 @@ export const Timer: FC = () => {
   }, []);
 
   return (
-    <Heading
+    <Box
+      fontSize='3xl'
       color={minutes < 1 && 'var(--chakra-colors-red-500)'}
       fontWeight={400}
     >
       {minutes > 9 ? minutes : '0' + minutes}:
       {seconds > 9 ? seconds : '0' + seconds}
-    </Heading>
+    </Box>
   );
 };

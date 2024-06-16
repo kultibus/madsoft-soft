@@ -7,7 +7,7 @@ interface MultipleQuestionType {
   difficulty: 'easy' | 'medium' | 'hard';
   category: string;
   question: string;
-  correct_answer: string;
+  correct_answer: string | string[];
   incorrect_answers: string[];
 }
 

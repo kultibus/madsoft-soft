@@ -11,7 +11,9 @@ export const Home: FC = () => {
     <Wrapper>
       <Header>
         <Center h='100%'>
-          <Heading fontWeight={400}>Добро пожаловать на тестирование!</Heading>
+          <Heading size='xl' fontWeight={400}>
+            Добро пожаловать на тестирование!
+          </Heading>
         </Center>
       </Header>
       <Content>

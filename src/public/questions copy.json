@@ -1,0 +1,70 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Выбор верного ответа из вариантов.",
+    "correct_answer": "Ответ 1 (верный)",
+    "incorrect_answers": [
+      "Ответ 2 (неверный)",
+      "Ответ 3 (неверный)",
+      "Ответ 4 (неверный)"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Выбор нескольких верных ответов из вариантов.",
+    "correct_answer": ["Ответ 1 (верный)", "Ответ 2 (верный)"],
+    "incorrect_answers": [
+      "Ответ 3 (неверный)",
+      "Ответ 4 (неверный)",
+      "Ответ 5 (неверный)"
+    ]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Выбор ответа 'да' или 'нет' (верный ответ - 'да').",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "On which mission did the Space Shuttle Columbia break up upon re-entry?",
+    "correct_answer": "STS-107",
+    "incorrect_answers": ["STS-51-L", "STS-61-C", "STS-109"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "History",
+    "question": "During the Roman Triumvirate of 42 BCE, what region of the Roman Republic was given to Lepidus?",
+    "correct_answer": ["Hispania", "Francia"],
+    "incorrect_answers": ["Italia", "Gallia", "Asia"]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "The capital of the US State Ohio is the city of Chillicothe.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "type": "short",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "What's your favorite web browser?"
+  },
+  {
+    "type": "detailed",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Describe  your frontend development experience over the past year."
+  }
+]

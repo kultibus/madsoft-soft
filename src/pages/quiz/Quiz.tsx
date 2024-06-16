@@ -43,13 +43,17 @@ export const Quiz: FC = () => {
           justifyContent={'space-between'}
           py={'16px'}
         >
-          <Heading fontWeight={400}>Тестирование</Heading>
+          <Heading size='xl' fontWeight={400}>
+            Тестирование
+          </Heading>
           <Timer />
         </Flex>
       </Header>
       <Content>
-        <Stepper questions={questions} />
-        <Question questions={questions} />
+        <Flex direction={'column'} gap={4}>
+          <Stepper questions={questions} />
+          <Question questions={questions} />
+        </Flex>
       </Content>
     </Wrapper>
   );
