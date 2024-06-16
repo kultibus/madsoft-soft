@@ -4,16 +4,22 @@ import { getQuestions } from '@src/api/api';
 import { Content, Header, Question, Stepper, Wrapper } from '@src/components';
 import { Timer } from '@src/components/timer';
 import { useQuery } from '@tanstack/react-query';
-import { useUnit } from 'effector-react';
-import { $quizStore, setElapsedTime } from './store';
-import { Navigate } from 'react-router-dom';
-import { RESULT_ROUTE } from '@src/routes';
+// import { useUnit } from 'effector-react';
+import {
+  // $quizStore,
+  setElapsedTime,
+  setResults,
+} from './store';
+// import { Navigate } from 'react-router-dom';
+// import { RESULT_ROUTE } from '@src/routes';
 
 export const Quiz: FC = () => {
-  const { isTimeOver } = useUnit($quizStore);
+  //   const { isTimeOver } = useUnit($quizStore);
 
   useEffect(() => {
     const startTime = Date.now();
+
+    setResults([]);
 
     return () => {
       setElapsedTime(Date.now() - startTime);
@@ -32,7 +38,7 @@ export const Quiz: FC = () => {
       </Center>
     );
 
-  if (isTimeOver) return <Navigate to={RESULT_ROUTE} />;
+  // if (isTimeOver) return <Navigate to={RESULT_ROUTE} />;
 
   return (
     <Wrapper>

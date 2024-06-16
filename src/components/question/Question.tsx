@@ -28,7 +28,8 @@ interface QuestionProps {
 export const Question: FC<QuestionProps> = (props) => {
   const { questions } = props;
   const { currentQuestion, results } = useUnit($quizStore);
-  const [inputValues, setInputValues] = useState<string[]>([]);
+  const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
+  const [radioValue, setRadioValue] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -57,8 +58,6 @@ export const Question: FC<QuestionProps> = (props) => {
     }));
   }, [correctAnswer, incorrectAnswer, type]);
 
-  //   console.log(answers);
-
   const isLastQuestion = useMemo(() => {
     return questions.length - currentQuestion === 1;
   }, [questions, currentQuestion]);
@@ -73,24 +72,28 @@ export const Question: FC<QuestionProps> = (props) => {
             ? [correctAnswer]
             : [...correctAnswer];
 
-        const isRightAnswer =
+        const isRightCheckboxAnswer =
           JSON.stringify(
             correctAnswerArr.sort((a, b) => a.localeCompare(b)),
-          ) === JSON.stringify(inputValues.sort((a, b) => a.localeCompare(b)))
+          ) ===
+          JSON.stringify(checkboxValues.sort((a, b) => a.localeCompare(b)))
             ? true
             : false;
 
-        setResults([...results, [isRightAnswer, question]]);
+        setResults([...results, [isRightCheckboxAnswer, question]]);
 
         break;
       case 'boolean':
-        //   console.log()
-        // setResults([...results, [isRightAnswer, question]]);
+        const isRightRadioAnswer =
+          radioValue === correctAnswer.toLocaleLowerCase() ? true : false;
+
+        setResults([...results, [isRightRadioAnswer, question]]);
 
         break;
     }
 
-    setInputValues([]);
+    setCheckboxValues([]);
+    setRadioValue('');
 
     if (isLastQuestion) {
       setIsTimeOver(true);
@@ -125,10 +128,10 @@ export const Question: FC<QuestionProps> = (props) => {
                 onChange={(e) => {
                   const target = e.target;
                   if (target.checked) {
-                    setInputValues([...inputValues, target.value]);
+                    setCheckboxValues([...checkboxValues, target.value]);
                   } else {
-                    setInputValues(
-                      inputValues.filter((val) => val !== target.value),
+                    setCheckboxValues(
+                      checkboxValues.filter((val) => val !== target.value),
                     );
                   }
                 }}
@@ -140,24 +143,12 @@ export const Question: FC<QuestionProps> = (props) => {
         )}
 
         {type === 'boolean' && (
-          <RadioGroup onChange={() => {}}>
+          <RadioGroup onChange={setRadioValue} value={radioValue}>
             <Stack>
-              <Radio
-                //   name={question}
-                //   id={Math.random().toString(36).substring(2, 9)}
-                //   value='true'
-                //   onChange={(e) => console.log(e.target.value)}
-                size={'lg'}
-              >
+              <Radio name={question} value='true' size={'lg'}>
                 Да
               </Radio>
-              <Radio
-                //   name={question}
-                //   id={Math.random().toString(36).substring(2, 9)}
-                //   onChange={(e) => console.log(e.target.value)}
-                //   value='false'
-                size={'lg'}
-              >
+              <Radio name={question} value='false' size={'lg'}>
                 Нет
               </Radio>
             </Stack>

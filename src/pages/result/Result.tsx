@@ -50,7 +50,7 @@ export const Result: FC = () => {
             <Text>Результаты:</Text>
             <List>
               {results.map((r, i) => (
-                <ListItem key={r[1]}>
+                <ListItem key={i}>
                   {i + 1}: {r[0] ? 'Верно' : 'Неверно'}
                 </ListItem>
               ))}
