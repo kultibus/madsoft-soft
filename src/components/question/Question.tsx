@@ -66,6 +66,7 @@ export const Question: FC<QuestionProps> = (props) => {
   }, [questions, currentQuestion]);
 
   const handleSubmit = (e: FormEvent<HTMLDivElement>) => {
+    // завернуть useCallback
     e.preventDefault();
 
     switch (type) {

@@ -23,8 +23,10 @@ export const Stepper: FC<StepperProps> = (props) => {
               key={useId()} // eslint-disable-line react-hooks/rules-of-hooks
               h='15px'
               bg={
-                elem <= currentQuestion
-                  ? 'var(--chakra-colors-red-500)'
+                elem === currentQuestion
+                  ? 'red'
+                  : elem < currentQuestion
+                  ? 'var(--chakra-colors-gray-600)'
                   : 'var(--chakra-colors-gray-200)'
               }
               flexGrow={1}

@@ -3,7 +3,7 @@
 	  "type": "multiple",
 	  "difficulty": "medium",
 	  "category": "Science & Nature",
-	  "question": "Выбор верного ответа из нескольких вариантов.",
+	  "question": "Выбор одного верного ответа из разных вариантов.",
 	  "correct_answer": "Ответ 1 (верный)",
 	  "incorrect_answers": [
 		"Ответ 2 (неверный)",
@@ -15,7 +15,7 @@
 	  "type": "multiple",
 	  "difficulty": "medium",
 	  "category": "Science & Nature",
-	  "question": "Выбор нескольких верных ответов из нескольких вариантов.",
+	  "question": "Выбор нескольких верных ответов из разных вариантов.",
 	  "correct_answer": ["Ответ 1 (верный)", "Ответ 2 (верный)"],
 	  "incorrect_answers": [
 		"Ответ 3 (неверный)",

@@ -2,8 +2,8 @@ import {
   Center,
   Flex,
   Heading,
-  LinkBox,
-  LinkOverlay,
+  //   LinkBox,
+  //   LinkOverlay,
   List,
   ListItem,
   Stack,
@@ -61,13 +61,13 @@ export const Result: FC = () => {
                 </ListItem>
               ))}
             </List>
-            <LinkBox>
-              <AppBtn onClick={() => setCurrentQuestion(0)}>
-                <LinkOverlay as={Link} to={APP_MAIN_ROUTE}>
-                  Пройти ещё раз
-                </LinkOverlay>
-              </AppBtn>
-            </LinkBox>
+            <AppBtn
+              as={Link}
+              to={APP_MAIN_ROUTE}
+              onClick={() => setCurrentQuestion(0)}
+            >
+              Пройти ещё раз
+            </AppBtn>
           </Stack>
         </Center>
       </Content>
