@@ -19,7 +19,7 @@ export const Result: FC = () => {
 
   return (
     <Wrapper>
-      <Stack>
+      <Stack flexBasis='50%'>
         <Heading size='xl'>Тестирование закончено!</Heading>
 
         <Stack fontSize='xl'>
@@ -47,6 +47,7 @@ export const Result: FC = () => {
             ))}
           </List>
           <AppBtn
+            w='fit-content'
             onClick={() => {
               sessionStorage.removeItem('timeLimit');
               sessionStorage.removeItem('isResult');

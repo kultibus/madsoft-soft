@@ -48,12 +48,10 @@ export const Question: FC<QuestionProps> = (props) => {
 
     const answers =
       typeof correctAnswer === 'string'
-        ? [...incorrectAnswer, correctAnswer]
+        ? [correctAnswer, ...incorrectAnswer]
         : [...correctAnswer, ...incorrectAnswer];
 
-    arrayShuffle(answers);
-
-    return answers.map((answer) => ({
+    return arrayShuffle(answers).map((answer) => ({
       id: Math.random().toString(36).substring(2, 9),
       answer,
     }));

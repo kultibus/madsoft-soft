@@ -4,4 +4,6 @@ export function arrayShuffle(array: string[]) {
 
     [array[i], array[j]] = [array[j], array[i]];
   }
+
+  return array;
 }

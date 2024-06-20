@@ -4,8 +4,8 @@ const URL = 'questions.json';
 
 interface MultipleQuestionType {
   type: 'multiple';
-  difficulty: 'easy' | 'medium' | 'hard';
-  category: string;
+  //   difficulty: 'easy' | 'medium' | 'hard';
+  //   category: string;
   question: string;
   correct_answer: string | string[];
   incorrect_answers: string[];
@@ -13,8 +13,8 @@ interface MultipleQuestionType {
 
 interface TrueFalseQuestionType {
   type: 'boolean';
-  difficulty: 'easy' | 'medium' | 'hard';
-  category: string;
+  //   difficulty: 'easy' | 'medium' | 'hard';
+  //   category: string;
   question: string;
   correct_answer: 'True' | 'False';
   incorrect_answers: ('True' | 'False')[];
@@ -22,8 +22,8 @@ interface TrueFalseQuestionType {
 
 interface ShortQuestionType {
   type: 'short';
-  difficulty: 'easy' | 'medium' | 'hard';
-  category: string;
+  //   difficulty: 'easy' | 'medium' | 'hard';
+  //   category: string;
   question: string;
   correct_answer: string;
   incorrect_answers: null;
@@ -31,8 +31,8 @@ interface ShortQuestionType {
 
 interface DetailedQuestionType {
   type: 'detailed';
-  difficulty: 'easy' | 'medium' | 'hard';
-  category: string;
+  //   difficulty: 'easy' | 'medium' | 'hard';
+  //   category: string;
   question: string;
   correct_answer: string;
   incorrect_answers: null;

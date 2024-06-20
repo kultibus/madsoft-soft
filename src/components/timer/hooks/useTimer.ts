@@ -12,7 +12,6 @@ export const useTimer = () => {
     if (timeLimit <= 0 && !!timerRef.current) {
       clearTimeout(timerRef.current);
 
-      //   sessionStorage.removeItem('timeLimit');
       return;
     }
 
@@ -21,7 +20,6 @@ export const useTimer = () => {
     sessionStorage.setItem('timeLimit', JSON.stringify(timeLimit));
 
     return () => {
-      //   sessionStorage.removeItem('timeLimit');
       clearTimeout(timerRef.current);
     };
   }, [timeLimit]);

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Center, HStack, Heading, Spinner, Stack } from '@chakra-ui/react';
 import { getQuestions } from '@src/api/api';
 import { Question, Stepper, Wrapper } from '@src/components';
@@ -42,6 +42,14 @@ export const Quiz: FC = () => {
     setTimeLimit(parcedConfig.minutesLimit * 60000);
   }, []);
 
+  const filteredAndShuffledQuestions = useMemo(() => {
+    const configParsed: TestConfig = JSON.parse(
+      sessionStorage.getItem('config'),
+    );
+
+    return questions.filter((q) => configParsed.questionTypes[q.type]);
+  }, [questions]);
+
   if (isQuestionsLoading)
     return (
       <Center w='100%' h='100vh'>
@@ -68,8 +76,8 @@ export const Quiz: FC = () => {
           <Timer />
         </HStack>
         <Stack>
-          <Stepper questions={questions} />
-          <Question questions={questions} />
+          <Stepper questions={filteredAndShuffledQuestions} />
+          <Question questions={filteredAndShuffledQuestions} />
         </Stack>
       </Stack>
     </Wrapper>
