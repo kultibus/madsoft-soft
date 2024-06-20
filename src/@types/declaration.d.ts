@@ -14,10 +14,10 @@ declare interface SessionState {
 }
 
 declare type QuestonTypes =
-  | { multiple: string }
-  | { boolean: string }
-  | { short: string }
-  | { detailed: string };
+  | { multiple: string; state: boolean }
+  | { boolean: string; state: boolean }
+  | { short: string; state: boolean }
+  | { detailed: string; state: boolean };
 
 declare interface TestConfig {
   minutesLimit: number;

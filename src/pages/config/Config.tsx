@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from 'react';
+import React, { FC, FormEvent, useMemo, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import {
@@ -26,12 +26,16 @@ export const Config: FC = () => {
   const [minutesLimit, setMinutesLimit] = useState<number>(10);
   const [questionTypes, setQuestionTypes] = useState(DEFAULT_QUESTION_TYPES);
 
+  const isCheckedAny = useMemo(() => {
+    return !!questionTypes.find((q) => q.state);
+  }, [questionTypes]);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    if (!questionTypes.length) return;
+    if (!isCheckedAny) return;
 
     sessionStorage.removeItem('user');
     setUser(null);
@@ -40,12 +44,11 @@ export const Config: FC = () => {
       'config',
       JSON.stringify({
         minutesLimit,
-        questionTypes: questionTypes
-          .map((q) => Object.entries(q)[0])
-          .reduce((acc, i) => {
-            acc[i[0]] = true;
-            return acc;
-          }, {}),
+        questionTypes: questionTypes.reduce((acc, i) => {
+          acc[Object.entries(i)[0][0]] = Object.entries(i)[1][1];
+
+          return acc;
+        }, {}),
       }),
     );
 
@@ -82,41 +85,48 @@ export const Config: FC = () => {
             </HStack>
           </RadioGroup>
         </FormControl>
-        <FormControl isInvalid={!questionTypes.length} as='fieldset'>
+        <FormControl isInvalid={!isCheckedAny} as='fieldset'>
           <FormLabel fontSize='xl' as='legend'>
             Типы вопросов:
           </FormLabel>
           <Stack>
-            {DEFAULT_QUESTION_TYPES.map((q) => Object.entries(q)[0]).map(
-              (q) => (
+            {questionTypes
+              .map((q) => Object.entries(q)[0])
+              .map((q) => (
                 <AppCheckBox
                   defaultChecked
-                  name='questions'
+                  name='question_type'
                   id={q[0]}
                   key={q[0]}
                   value={q[0]}
                   onChange={(e) => {
                     const target = e.target;
                     if (!target.checked) {
-                      setQuestionTypes([
-                        ...questionTypes.filter(
-                          (q) => q[target.value] === q[0],
-                        ),
-                      ]);
+                      setQuestionTypes(
+                        questionTypes.map((t) => {
+                          if (t[q[0]] === q[1]) {
+                            return { ...t, state: false };
+                          }
+                          return t;
+                        }),
+                      );
                     } else {
-                      setQuestionTypes([
-                        ...questionTypes,
-                        DEFAULT_QUESTION_TYPES.find((q) => q[target.value]),
-                      ]);
+                      setQuestionTypes(
+                        questionTypes.map((t) => {
+                          if (t[q[0]] === q[1]) {
+                            return { ...t, state: true };
+                          }
+                          return t;
+                        }),
+                      );
                     }
                   }}
                 >
                   {q[1]}
                 </AppCheckBox>
-              ),
-            )}
+              ))}
           </Stack>
-          {!questionTypes.length && (
+          {!isCheckedAny && (
             <FormErrorMessage fontSize='lg'>
               Выберите хотя бы один тип вопроса
             </FormErrorMessage>

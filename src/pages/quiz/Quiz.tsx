@@ -47,7 +47,9 @@ export const Quiz: FC = () => {
       sessionStorage.getItem('config'),
     );
 
-    return questions.filter((q) => configParsed.questionTypes[q.type]);
+    return questions.filter((q) => {
+      return configParsed.questionTypes[q.type];
+    });
   }, [questions]);
 
   if (isQuestionsLoading)

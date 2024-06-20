@@ -6,8 +6,8 @@ export const ALLOWED_USERS = {
 export const DEFAULT_MINUTES_LIMIT = 10;
 
 export const DEFAULT_QUESTION_TYPES: QuestonTypes[] = [
-  { multiple: 'Выбор из нескольких вариантов ответа' },
-  { boolean: 'Выбор одного ответа' },
-  { short: 'Короткий ответ' },
-  { detailed: 'Развёрнутый ответ' },
+  { multiple: 'Выбор из нескольких вариантов ответа', state: true },
+  { boolean: 'Выбор одного ответа', state: true },
+  { short: 'Короткий ответ', state: true },
+  { detailed: 'Развёрнутый ответ', state: true },
 ];

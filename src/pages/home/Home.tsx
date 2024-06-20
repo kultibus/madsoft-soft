@@ -43,7 +43,11 @@ export const Home: FC = () => {
         'config',
         JSON.stringify({
           minutesLimit: DEFAULT_MINUTES_LIMIT,
-          questionTypes: DEFAULT_QUESTION_TYPES,
+          questionTypes: DEFAULT_QUESTION_TYPES.reduce((acc, i) => {
+            acc[Object.entries(i)[0][0]] = Object.entries(i)[1][1];
+
+            return acc;
+          }, {}),
         }),
       );
       return;

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Checkbox, CheckboxProps } from '@chakra-ui/react';
 
 interface AppCheckBoxProps extends CheckboxProps {
-  children: string;
+  children: ReactNode;
 }
 
 export const AppCheckBox: FC<AppCheckBoxProps> = (props) => {
