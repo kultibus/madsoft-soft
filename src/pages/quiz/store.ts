@@ -2,7 +2,7 @@ import { createStore, createEvent } from 'effector';
 
 interface QuizStore {
   currentQuestion: number;
-  results: [boolean | string, string][];
+  results: QuizResults;
   timeLimit: number | null;
 }
 
@@ -13,7 +13,7 @@ const $quizStore = createStore<QuizStore>({
 });
 
 const setCurrentQuestion = createEvent<number>();
-const setResults = createEvent<[boolean | string, string][]>();
+const setResults = createEvent<QuizResults>();
 const setTimeLimit = createEvent<number | null>();
 
 $quizStore

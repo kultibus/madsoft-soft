@@ -1,6 +1,5 @@
 import React, { FC, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { useUnit } from 'effector-react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import {
   FormControl,
@@ -13,13 +12,14 @@ import {
 } from '@chakra-ui/react';
 import { AppBtn } from '@src/components/UI/AppBtn';
 
-import { setUser } from '@src/store';
+import { $appStore, setUser } from '@src/store';
 
 import { APP_MAIN_ROUTE } from '@src/routes';
 import { Wrapper } from '@src/components';
+import { useUnit } from 'effector-react';
 
 export const Config: FC = () => {
-  //   const { user, login = '', pass = '' } = useUnit($appStore);
+  const { user } = useUnit($appStore);
 
   const [minutesLimit, setMinutesLimit] = useState<number>(10);
 
@@ -40,6 +40,10 @@ export const Config: FC = () => {
 
     navigate(APP_MAIN_ROUTE);
   };
+
+  if (user?.role !== 'configurator') {
+    return <Navigate to={APP_MAIN_ROUTE} />;
+  }
 
   return (
     <Wrapper>

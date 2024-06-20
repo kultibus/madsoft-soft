@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useMemo, useState } from 'react';
+import React, { FC, FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -13,7 +13,6 @@ import {
   $quizStore,
   setCurrentQuestion,
   setResults,
-  setTimeLimit,
 } from '@src/pages/quiz/store';
 import { RESULT_ROUTE } from '@src/routes';
 import { arrayShuffle } from '@src/utils';
@@ -64,6 +63,13 @@ export const Question: FC<QuestionProps> = (props) => {
     return questions.length - currentQuestion === 1;
   }, [questions, currentQuestion]);
 
+  useEffect(() => {
+    sessionStorage.setItem(
+      'sessionState',
+      JSON.stringify({ currentQuestion, results }),
+    );
+  }, [results, currentQuestion]);
+
   const handleSubmit = (e: FormEvent<HTMLDivElement>) => {
     // завернуть useCallback?
     e.preventDefault();
@@ -106,10 +112,10 @@ export const Question: FC<QuestionProps> = (props) => {
     setInputValue('');
 
     if (isLastQuestion) {
-      sessionStorage.removeItem('timeLimit');
-      setTimeLimit(null);
-      setCurrentQuestion(0);
+      sessionStorage.removeItem('isTesting');
+      sessionStorage.setItem('isResult', 'true');
       navigate(RESULT_ROUTE);
+
       return;
     }
 

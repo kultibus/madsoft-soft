@@ -7,9 +7,10 @@ import { AppBtn } from '@src/components/UI/AppBtn';
 
 import { setUser, $appStore, setLogin, setPass } from '@src/store';
 
-import { CONFIG_ROUTE, QUIZ_ROUTE } from '@src/routes';
-import { ALLOWED_USERS } from '@src/constants';
+import { CONFIG_ROUTE, QUIZ_ROUTE, RESULT_ROUTE } from '@src/routes';
+import { ALLOWED_USERS, DEFAULT_MINUTES_LIMIT } from '@src/constants';
 import { Wrapper } from '@src/components';
+import { setCurrentQuestion, setResults, setTimeLimit } from '../quiz/store';
 
 export const Home: FC = () => {
   const { user, login = '', pass = '' } = useUnit($appStore);
@@ -22,7 +23,30 @@ export const Home: FC = () => {
     const parsedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
     setUser(parsedUser);
+
+    setTimeLimit(null);
+    setCurrentQuestion(0);
+    setResults([]);
   }, []);
+
+  useEffect(() => {
+    const parcedConfig: TestConfig = JSON.parse(
+      sessionStorage.getItem('config'),
+    );
+
+    if (!parcedConfig) {
+      sessionStorage.setItem(
+        'config',
+        JSON.stringify({
+          minutesLimit: DEFAULT_MINUTES_LIMIT,
+        }),
+      );
+      return;
+    }
+  }, [user]);
+
+  if (sessionStorage.getItem('isTesting')) return <Navigate to={QUIZ_ROUTE} />;
+  if (sessionStorage.getItem('isResult')) return <Navigate to={RESULT_ROUTE} />;
 
   return (
     <Wrapper>
@@ -77,13 +101,11 @@ export const Home: FC = () => {
         <Stack>
           <Heading size='xl'>Добро пожаловать!</Heading>
           <AppBtn
+            onClick={() => {
+              sessionStorage.setItem('isTesting', 'true');
+            }}
             as={Link}
             to={QUIZ_ROUTE}
-            onClick={() => {
-              //   setTimeLimit(config.minutesLimit * 60000);
-              //   setResults([]);
-              //   setCurrentQuestion(0);
-            }}
           >
             Начать тестирование
           </AppBtn>

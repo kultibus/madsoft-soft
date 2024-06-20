@@ -11,12 +11,17 @@ export const useTimer = () => {
   useEffect(() => {
     if (timeLimit <= 0 && !!timerRef.current) {
       clearTimeout(timerRef.current);
+
+      //   sessionStorage.removeItem('timeLimit');
       return;
     }
 
     timerRef.current = setTimeout(() => setTimeLimit(timeLimit - 1000), 1000);
 
+    sessionStorage.setItem('timeLimit', JSON.stringify(timeLimit));
+
     return () => {
+      //   sessionStorage.removeItem('timeLimit');
       clearTimeout(timerRef.current);
     };
   }, [timeLimit]);
