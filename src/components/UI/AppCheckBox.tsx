@@ -9,7 +9,7 @@ export const AppCheckBox: FC<AppCheckBoxProps> = (props) => {
   const { children, ...restProps } = props;
 
   return (
-    <Checkbox size='lg' {...restProps}>
+    <Checkbox size='lg' colorScheme='red' {...restProps}>
       {children}
     </Checkbox>
   );

@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Container } from '@chakra-ui/react';
+import { Center, Container } from '@chakra-ui/react';
 
 interface WrapperProps {
   children: ReactNode;
@@ -7,8 +7,10 @@ interface WrapperProps {
 
 export const Wrapper: FC<WrapperProps> = (props) => {
   return (
-    <Container display='flex' flexDir='column' maxW='1920px' h='100vh' px={0}>
-      {props.children}
+    <Container colorScheme={'red'} maxW='1920px' h='100vh'>
+      <Center h='100%' w='100%'>
+        {props.children}
+      </Center>
     </Container>
   );
 };

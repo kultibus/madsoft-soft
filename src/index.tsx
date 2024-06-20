@@ -19,6 +19,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { Home, Quiz, Result } from './pages';
 
 import './index.scss';
+import { Config } from './pages/config';
 
 const appContainer = document.querySelector('#root') as Element;
 const root = createRoot(appContainer);
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={APP_MAIN_ROUTE} element={<Outlet />}>
       <Route index element={<Home />} />
-      <Route path={CONFIG_ROUTE} element={<div>config</div>} />
+      <Route path={CONFIG_ROUTE} element={<Config />} />
       <Route path={QUIZ_ROUTE} element={<Quiz />} />
       <Route path={RESULT_ROUTE} element={<Result />} />
     </Route>,

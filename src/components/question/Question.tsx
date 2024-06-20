@@ -1,6 +1,5 @@
 import React, { FC, FormEvent, useMemo, useState } from 'react';
 import {
-  Flex,
   FormControl,
   FormLabel,
   Input,
@@ -13,8 +12,8 @@ import { Questions } from '@src/api/api';
 import {
   $quizStore,
   setCurrentQuestion,
-  setIsTimeOver,
   setResults,
+  setTimeLimit,
 } from '@src/pages/quiz/store';
 import { RESULT_ROUTE } from '@src/routes';
 import { arrayShuffle } from '@src/utils';
@@ -66,7 +65,7 @@ export const Question: FC<QuestionProps> = (props) => {
   }, [questions, currentQuestion]);
 
   const handleSubmit = (e: FormEvent<HTMLDivElement>) => {
-    // завернуть useCallback
+    // завернуть useCallback?
     e.preventDefault();
 
     switch (type) {
@@ -107,7 +106,9 @@ export const Question: FC<QuestionProps> = (props) => {
     setInputValue('');
 
     if (isLastQuestion) {
-      setIsTimeOver(true);
+      sessionStorage.removeItem('timeLimit');
+      setTimeLimit(null);
+      setCurrentQuestion(0);
       navigate(RESULT_ROUTE);
       return;
     }
@@ -116,16 +117,10 @@ export const Question: FC<QuestionProps> = (props) => {
   };
 
   return (
-    <Flex
-      onSubmit={handleSubmit}
-      as='form'
-      display='flex'
-      direction='column'
-      gap={4}
-    >
+    <Stack onSubmit={handleSubmit} as='form'>
       <FormControl as='fieldset'>
-        <FormLabel as='legend' fontSize='x-large'>
-          {`${currentQuestion + 1}` + '. ' + question}
+        <FormLabel as='legend' fontSize='2xl'>
+          {question}
         </FormLabel>
 
         {type === 'multiple' && (
@@ -154,12 +149,16 @@ export const Question: FC<QuestionProps> = (props) => {
         )}
 
         {type === 'boolean' && (
-          <RadioGroup onChange={setRadioValue} value={radioValue}>
+          <RadioGroup
+            name={question}
+            onChange={setRadioValue}
+            value={radioValue}
+          >
             <Stack>
-              <Radio name={question} value='true' size={'lg'}>
+              <Radio value='true' size={'lg'} colorScheme='red'>
                 Да
               </Radio>
-              <Radio name={question} value='false' size={'lg'}>
+              <Radio value='false' size={'lg'} colorScheme='red'>
                 Нет
               </Radio>
             </Stack>
@@ -168,6 +167,7 @@ export const Question: FC<QuestionProps> = (props) => {
 
         {type === 'short' && (
           <Input
+            focusBorderColor='gray.500'
             maxLength={30}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -176,6 +176,8 @@ export const Question: FC<QuestionProps> = (props) => {
         )}
         {type === 'detailed' && (
           <Textarea
+            focusBorderColor='gray.500'
+            rows={15}
             resize={'vertical'}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -187,6 +189,6 @@ export const Question: FC<QuestionProps> = (props) => {
       <AppBtn type='submit' alignSelf={'start'}>
         {!isLastQuestion ? 'Следующий вопрос' : 'Закончить тестирование'}
       </AppBtn>
-    </Flex>
+    </Stack>
   );
 };

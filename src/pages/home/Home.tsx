@@ -1,15 +1,15 @@
 import React, { FC, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useUnit } from 'effector-react';
 
-import { Center, Container, Heading, Input, Stack } from '@chakra-ui/react';
+import { Heading, Input, Stack } from '@chakra-ui/react';
 import { AppBtn } from '@src/components/UI/AppBtn';
 
-import { setIsTimeOver } from '../quiz/store';
 import { setUser, $appStore, setLogin, setPass } from '@src/store';
 
-import { QUIZ_ROUTE } from '@src/routes';
+import { CONFIG_ROUTE, QUIZ_ROUTE } from '@src/routes';
 import { ALLOWED_USERS } from '@src/constants';
+import { Wrapper } from '@src/components';
 
 export const Home: FC = () => {
   const { user, login = '', pass = '' } = useUnit($appStore);
@@ -25,85 +25,79 @@ export const Home: FC = () => {
   }, []);
 
   return (
-    <Container maxW='1920px' h='100vh'>
-      <Center h='100%' w='100%'>
-        {!user ? (
-          <Stack>
-            <Input
-              size={'lg'}
-              placeholder='Логин'
-              value={login}
-              onChange={(e) => setLogin(e.target.value)}
-            />
-            <Input
-              size={'lg'}
-              placeholder='Пароль'
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-            />
-            <AppBtn
-              onClick={() => {
-                if (!login?.trim().length || !pass?.trim()) return;
+    <Wrapper>
+      {!user ? (
+        <Stack>
+          <Heading size='xl'>Вход в систему тестирования</Heading>
+          <Input
+            focusBorderColor='gray.500'
+            size={'lg'}
+            placeholder='Логин'
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
+          />
+          <Input
+            focusBorderColor='gray.500'
+            size={'lg'}
+            placeholder='Пароль'
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          />
+          <AppBtn
+            onClick={() => {
+              if (!login?.trim().length || !pass?.trim()) return;
 
-                if (
-                  !ALLOWED_USERS[login] &&
-                  ALLOWED_USERS[login]?.pass !== pass
-                ) {
-                  alert('Неверный логин или пароль');
+              if (
+                ALLOWED_USERS[login] !== login &&
+                ALLOWED_USERS[login]?.pass !== pass
+              ) {
+                alert('Неверный логин или пароль');
 
-                  return;
-                }
+                return;
+              }
 
-                sessionStorage.setItem(
-                  'user',
-                  JSON.stringify({
-                    login,
-                    pass,
-                    role: ALLOWED_USERS[login].role,
-                  }),
-                );
+              sessionStorage.setItem(
+                'user',
+                JSON.stringify({
+                  login,
+                  pass,
+                  role: ALLOWED_USERS[login].role,
+                }),
+              );
 
-                setUser({ login, pass, role: ALLOWED_USERS[login].role });
-              }}
-            >
-              Войти
-            </AppBtn>
-          </Stack>
-        ) : (
-          <Stack alignItems='center'>
-            <Heading px={4} size='xl' fontWeight={400}>
-              Добро пожаловать на тестирование!
-            </Heading>
-            {user.role === 'configurator' ? (
-              <AppBtn w='fit-content' as={Link} to={QUIZ_ROUTE}>
-                Кофигурировать тест
-              </AppBtn>
-            ) : (
-              <AppBtn
-                w='fit-content'
-                as={Link}
-                to={QUIZ_ROUTE}
-                onClick={() => {
-                  setIsTimeOver(false);
-                }}
-              >
-                Начать тестирование
-              </AppBtn>
-            )}
+              setUser({ login, pass, role: ALLOWED_USERS[login].role });
+            }}
+          >
+            Войти
+          </AppBtn>
+        </Stack>
+      ) : user.role === 'configurator' ? (
+        <Navigate to={CONFIG_ROUTE} />
+      ) : (
+        <Stack>
+          <Heading size='xl'>Добро пожаловать!</Heading>
+          <AppBtn
+            as={Link}
+            to={QUIZ_ROUTE}
+            onClick={() => {
+              //   setTimeLimit(config.minutesLimit * 60000);
+              //   setResults([]);
+              //   setCurrentQuestion(0);
+            }}
+          >
+            Начать тестирование
+          </AppBtn>
+          <AppBtn
+            onClick={() => {
+              sessionStorage.removeItem('user');
 
-            <AppBtn
-              w='fit-content'
-              onClick={() => {
-                sessionStorage.removeItem('user');
-
-                setUser(null);
-              }}
-            >
-              Выйти
-            </AppBtn>
-          </Stack>
-        )}
-      </Center>
-    </Container>
+              setUser(null);
+            }}
+          >
+            Выйти
+          </AppBtn>
+        </Stack>
+      )}
+    </Wrapper>
   );
 };

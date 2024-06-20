@@ -26,7 +26,7 @@ export const Stepper: FC<StepperProps> = (props) => {
                 elem === currentQuestion
                   ? 'red'
                   : elem < currentQuestion
-                  ? 'var(--chakra-colors-gray-600)'
+                  ? 'var(--chakra-colors-gray-500)'
                   : 'var(--chakra-colors-gray-200)'
               }
               flexGrow={1}

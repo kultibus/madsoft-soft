@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { useTimer } from './hooks/useTimer';
 
 export const Timer: FC = () => {
@@ -7,11 +7,18 @@ export const Timer: FC = () => {
 
   return (
     <Box
-      fontSize='3xl'
-      color={isAttention && 'var(--chakra-colors-red-500)'}
-      fontWeight={400}
+      border={'1px solid var(--chakra-colors-gray-500)'}
+      borderColor={isAttention && 'var(--chakra-colors-red-500)'}
+      borderRadius={4}
+      px={2}
     >
-      {formatedTime}
+      <Text
+        fontSize='xl'
+        fontWeight={400}
+        color={isAttention && 'var(--chakra-colors-red-500)'}
+      >
+        {formatedTime}
+      </Text>
     </Box>
   );
 };

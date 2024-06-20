@@ -5,3 +5,7 @@ interface UserType {
 }
 
 declare type User = UserType | null;
+
+declare interface TestConfig {
+  minutesLimit: number;
+}
