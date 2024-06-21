@@ -1,11 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
   Outlet,
+  createHashRouter,
 } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import {
@@ -26,7 +26,7 @@ const root = createRoot(appContainer);
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path={APP_MAIN_ROUTE} element={<Outlet />}>
       <Route index element={<Home />} />

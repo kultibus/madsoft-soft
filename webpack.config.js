@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.[fullhash].js',
-    publicPath: '/',
+    publicPath: '',
     clean: true,
   },
 
@@ -35,14 +35,14 @@ module.exports = {
 
     new CleanWebpackPlugin(),
 
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, './src/public'),
-    //       to: '',
-    //     },
-    //   ],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, './src/public'),
+          to: '',
+        },
+      ],
+    }),
   ],
 
   resolve: {
