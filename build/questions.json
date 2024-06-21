@@ -1,0 +1,54 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Выбор из нескольких вариантов ответа (верный ответ один).",
+    "correct_answer": "Ответ 1 (верный)",
+    "incorrect_answers": [
+      "Ответ 2 (неверный)",
+      "Ответ 3 (неверный)",
+      "Ответ 4 (неверный)"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Выбор из нескольких вариантов ответа (верных ответов несколько).",
+    "correct_answer": ["Ответ 1 (верный)", "Ответ 2 (верный)"],
+    "incorrect_answers": [
+      "Ответ 3 (неверный)",
+      "Ответ 4 (неверный)",
+      "Ответ 5 (неверный)"
+    ]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Выбор одного ответа (верный ответ - 'да').",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "type": "boolean",
+    "difficulty": "medium",
+    "category": "Geography",
+    "question": "Выбор одного ответа (верный ответ - 'нет').",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "type": "short",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Короткий ответ."
+  },
+  {
+    "type": "detailed",
+    "difficulty": "medium",
+    "category": "Science & Nature",
+    "question": "Развёрнутый ответ."
+  }
+]
